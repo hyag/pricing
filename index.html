@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>料金プラン — SpeakUp Online English</title>
+<meta name="description" content="オンライン英会話 SpeakUp の料金プラン。ライト・スタンダード・プレミアムの3プランからお選びください。">
+<meta name="color-scheme" content="light dark">
+<style>
+:root {
+  --accent:        #2563eb;
+  --accent-strong: #1d4ed8;
+  --accent-soft:   rgba(37,99,235,.10);
+  --bg:            #f8fafc;
+  --bg-elevated:   #ffffff;
+  --border:        #e2e8f0;
+  --text:          #0f172a;
+  --text-muted:    #64748b;
+  --radius:        16px;
+  --shadow:        0 1px 3px rgba(15,23,42,.06), 0 8px 32px rgba(15,23,42,.08);
+  --shadow-lg:     0 4px 6px rgba(15,23,42,.07), 0 20px 48px rgba(15,23,42,.12);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --accent:        #60a5fa;
+    --accent-strong: #93c5fd;
+    --accent-soft:   rgba(96,165,250,.12);
+    --bg:            #0a0f1e;
+    --bg-elevated:   #111827;
+    --border:        #1e2d45;
+    --text:          #f1f5f9;
+    --text-muted:    #94a3b8;
+    --shadow:        0 1px 3px rgba(0,0,0,.3), 0 8px 32px rgba(0,0,0,.25);
+    --shadow-lg:     0 4px 6px rgba(0,0,0,.3), 0 20px 48px rgba(0,0,0,.35);
+  }
+}
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI",
+               "Noto Sans JP", system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ヘッダー */
+.header {
+  text-align: center;
+  padding: clamp(3rem, 10vw, 6rem) 1.5rem clamp(2rem, 6vw, 3rem);
+}
+.header .label {
+  display: inline-block;
+  padding: .25rem .9rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+.header h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -.02em;
+}
+.header p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: clamp(.95rem, 2.5vw, 1.05rem);
+}
+
+/* 切り替えトグル */
+.toggle-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .8rem;
+  margin: 2rem 0;
+  font-size: .9rem;
+  color: var(--text-muted);
+}
+.toggle {
+  position: relative;
+  width: 52px;
+  height: 28px;
+}
+.toggle input { opacity: 0; width: 0; height: 0; }
+.toggle-slider {
+  position: absolute;
+  inset: 0;
+  background: var(--border);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background .25s;
+}
+.toggle-slider::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 4px;
+  top: 4px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform .25s;
+}
+.toggle input:checked + .toggle-slider { background: var(--accent); }
+.toggle input:checked + .toggle-slider::before { transform: translateX(24px); }
+.toggle-label.active { color: var(--text); font-weight: 600; }
+.badge-save {
+  display: inline-block;
+  padding: .1rem .5rem;
+  border-radius: 999px;
+  background: #22c55e;
+  color: #fff;
+  font-size: .7rem;
+  font-weight: 700;
+}
+
+/* プランカード */
+.plans {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  width: min(100% - 3rem, 1000px);
+  margin: 0 auto clamp(3rem, 8vw, 5rem);
+}
+@media (max-width: 768px) {
+  .plans { grid-template-columns: 1fr; max-width: 420px; }
+}
+
+.plan-card {
+  position: relative;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow);
+  padding: 2rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform .25s, box-shadow .25s;
+}
+@media (hover: hover) {
+  .plan-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+}
+.plan-card.featured {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-lg), 0 0 0 1px var(--accent);
+}
+
+.badge-recommended {
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: #fff;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  padding: .2rem .9rem;
+  border-radius: 0 0 8px 8px;
+  white-space: nowrap;
+}
+
+.plan-name {
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 .6rem;
+}
+.plan-card.featured .plan-name { color: var(--accent); }
+
+.price-wrap { margin: 0 0 1.5rem; }
+.price {
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  line-height: 1;
+}
+.price-unit {
+  font-size: .85rem;
+  color: var(--text-muted);
+  margin-left: .2rem;
+}
+.price-annual {
+  display: none;
+  font-size: .82rem;
+  color: var(--text-muted);
+  margin-top: .3rem;
+}
+.annual-mode .price-monthly { display: none; }
+.annual-mode .price-annual  { display: block; }
+
+.plan-desc {
+  font-size: .88rem;
+  color: var(--text-muted);
+  margin: 0 0 1.5rem;
+  flex-shrink: 0;
+}
+
+.features {
+  list-style: none;
+  margin: 0 0 2rem;
+  padding: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: .65rem;
+}
+.features li {
+  display: flex;
+  align-items: flex-start;
+  gap: .6rem;
+  font-size: .88rem;
+}
+.features li::before {
+  content: "✓";
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: .7rem;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  margin-top: .1rem;
+}
+.features li.muted { color: var(--text-muted); }
+.features li.muted::before {
+  background: var(--border);
+  color: var(--text-muted);
+  content: "–";
+}
+
+.cta-btn {
+  display: block;
+  text-align: center;
+  padding: .8rem 1.2rem;
+  border-radius: 10px;
+  border: 1.5px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  font-size: .92rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background .2s, color .2s;
+  margin-top: auto;
+}
+.cta-btn:hover { background: var(--accent-soft); }
+.plan-card.featured .cta-btn {
+  background: var(--accent);
+  color: #fff;
+}
+.plan-card.featured .cta-btn:hover { background: var(--accent-strong); }
+
+/* FAQ */
+.faq {
+  width: min(100% - 3rem, 680px);
+  margin: 0 auto clamp(3rem, 8vw, 5rem);
+}
+.faq h2 {
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0 0 1.5rem;
+}
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+.faq-item summary {
+  padding: 1rem 0;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: .95rem;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.faq-item summary::after {
+  content: "+";
+  font-size: 1.2rem;
+  color: var(--accent);
+  flex-shrink: 0;
+  transition: transform .2s;
+}
+.faq-item[open] summary::after { transform: rotate(45deg); }
+.faq-item p {
+  margin: 0 0 1rem;
+  font-size: .88rem;
+  color: var(--text-muted);
+}
+
+/* フッター */
+footer {
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: .78rem;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <span class="label">Pricing</span>
+  <h1>シンプルな料金プラン</h1>
+  <p>すべてのプランに無料体験レッスン付き。いつでもキャンセル可能です。</p>
+  <div class="toggle-wrap">
+    <span class="toggle-label" id="labelMonthly">月払い</span>
+    <label class="toggle">
+      <input type="checkbox" id="billingToggle">
+      <span class="toggle-slider"></span>
+    </label>
+    <span class="toggle-label" id="labelAnnual">年払い <span class="badge-save">2ヶ月分お得</span></span>
+  </div>
+</div>
+
+<div class="plans" id="plansWrap">
+
+  <!-- ライト -->
+  <div class="plan-card">
+    <p class="plan-name">ライト</p>
+    <div class="price-wrap">
+      <div class="price-monthly">
+        <span class="price">¥2,980</span><span class="price-unit">/ 月</span>
+      </div>
+      <div class="price-annual">
+        <span class="price">¥2,483</span><span class="price-unit">/ 月</span>
+        <div>年払い ¥29,800</div>
+      </div>
+    </div>
+    <p class="plan-desc">週2回・25分のレッスンで英語習慣をスタート。</p>
+    <ul class="features">
+      <li>週2回レッスン（25分）</li>
+      <li>ネイティブ講師</li>
+      <li>レッスン録画あり</li>
+      <li class="muted">毎日レッスン</li>
+      <li class="muted">50分コース</li>
+      <li class="muted">専用教材</li>
+    </ul>
+    <a class="cta-btn" href="#">無料体験を始める</a>
+  </div>
+
+  <!-- スタンダード（おすすめ） -->
+  <div class="plan-card featured">
+    <span class="badge-recommended">おすすめ</span>
+    <p class="plan-name">スタンダード</p>
+    <div class="price-wrap">
+      <div class="price-monthly">
+        <span class="price">¥5,980</span><span class="price-unit">/ 月</span>
+      </div>
+      <div class="price-annual">
+        <span class="price">¥4,983</span><span class="price-unit">/ 月</span>
+        <div>年払い ¥59,800</div>
+      </div>
+    </div>
+    <p class="plan-desc">毎日25分のレッスンで着実にスキルアップ。</p>
+    <ul class="features">
+      <li>毎日レッスン（25分）</li>
+      <li>ネイティブ講師</li>
+      <li>レッスン録画あり</li>
+      <li>予習・復習サポート</li>
+      <li class="muted">50分コース</li>
+      <li class="muted">専用教材</li>
+    </ul>
+    <a class="cta-btn" href="#">無料体験を始める</a>
+  </div>
+
+  <!-- プレミアム -->
+  <div class="plan-card">
+    <p class="plan-name">プレミアム</p>
+    <div class="price-wrap">
+      <div class="price-monthly">
+        <span class="price">¥9,800</span><span class="price-unit">/ 月</span>
+      </div>
+      <div class="price-annual">
+        <span class="price">¥8,167</span><span class="price-unit">/ 月</span>
+        <div>年払い ¥98,000</div>
+      </div>
+    </div>
+    <p class="plan-desc">毎日50分＋専用教材で最速成長を目指す方に。</p>
+    <ul class="features">
+      <li>毎日レッスン（50分）</li>
+      <li>ネイティブ講師</li>
+      <li>レッスン録画あり</li>
+      <li>予習・復習サポート</li>
+      <li>専用教材一式</li>
+      <li>専任コーチ面談（月1回）</li>
+    </ul>
+    <a class="cta-btn" href="#">無料体験を始める</a>
+  </div>
+
+</div>
+
+<!-- FAQ -->
+<div class="faq">
+  <h2>よくある質問</h2>
+  <details class="faq-item">
+    <summary>無料体験はどのように申し込みますか？</summary>
+    <p>「無料体験を始める」ボタンから必要事項を入力するだけで申し込めます。クレジットカードの登録は不要です。</p>
+  </details>
+  <details class="faq-item">
+    <summary>途中でプランを変更できますか？</summary>
+    <p>いつでもプランのアップグレード・ダウングレードが可能です。変更は翌月から適用されます。</p>
+  </details>
+  <details class="faq-item">
+    <summary>解約はいつでもできますか？</summary>
+    <p>契約期間の縛りはありません。マイページからいつでも解約できます。</p>
+  </details>
+  <details class="faq-item">
+    <summary>年払いと月払いはどちらがお得ですか？</summary>
+    <p>年払いは月払いと比べて約2ヶ月分お得になります。長期的に続ける方には年払いをおすすめします。</p>
+  </details>
+</div>
+
+<footer>
+  <p>&copy; 2026 SpeakUp Online English</p>
+</footer>
+
+<script>
+const toggle = document.getElementById('billingToggle');
+const plansWrap = document.getElementById('plansWrap');
+const labelMonthly = document.getElementById('labelMonthly');
+const labelAnnual = document.getElementById('labelAnnual');
+
+toggle.addEventListener('change', () => {
+  if (toggle.checked) {
+    plansWrap.classList.add('annual-mode');
+    labelAnnual.classList.add('active');
+    labelMonthly.classList.remove('active');
+  } else {
+    plansWrap.classList.remove('annual-mode');
+    labelMonthly.classList.add('active');
+    labelAnnual.classList.remove('active');
+  }
+});
+labelMonthly.classList.add('active');
+</script>
+</body>
+</html>
